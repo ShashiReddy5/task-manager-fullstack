@@ -1,0 +1,29 @@
+<div class="task-list">
+  <h2>My Tasks</h2>
+
+  <p *ngIf="loading">Loading tasks...</p>
+  <p *ngIf="error" class="error">{{ error }}</p>
+
+  <table *ngIf="!loading && tasks.length">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Priority</th>
+        <th>Assignee</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks">
+        <td>{{ task.title }}</td>
+        <td>{{ task.status }}</td>
+        <td>{{ task.priority }}</td>
+        <td>{{ task.assigneeUsername || '-' }}</td>
+        <td><button (click)="deleteTask(task.id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="!loading && !tasks.length">No tasks yet.</p>
+</div>
